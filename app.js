@@ -30,7 +30,11 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/tasks', tasksRouter);
+app.use('/api/v0/tasks', tasksRouter);
+
+app.get('/tasks', function(req, res) {
+  res.sendFile('tasks.html', { root: __dirname + '/src/client' });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
